@@ -5,18 +5,18 @@ const Home = () => {
     return (
         <div className="bg-primary min-vh-100 d-flex flex-row align-items-center">
             <div className="container">
-                <div class="row">
-                    <div class="col-sm-6">
+                <div className="row">
+                    <div className="col-sm-6">
                         <div
-                            class="card"
+                            className="card"
                             // style={{
                             //     backgroundColor: '#575fcf',
                             //     color: 'white',
                             // }}
                         >
-                            <div class="card-body">
-                                <h5 class="card-title">Appellant Login</h5>
-                                <p class="card-text">
+                            <div className="card-body">
+                                <h5 className="card-title">Appellant Login</h5>
+                                <p className="card-text">
                                     To Create A New Appeal Please Login as an
                                     Appellant
                                 </p>
@@ -29,17 +29,17 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div className="col-sm-6">
                         <div
-                            class="card"
+                            className="card"
                             style={{
                                 backgroundColor: '#05c46b',
                                 color: 'white',
                             }}
                         >
-                            <div class="card-body">
-                                <h5 class="card-title">Govt Login</h5>
-                                <p class="card-text">
+                            <div className="card-body">
+                                <h5 className="card-title">Govt Login</h5>
+                                <p className="card-text">
                                     For officials Please login
                                 </p>
                                 <Link

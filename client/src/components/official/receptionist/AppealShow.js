@@ -26,7 +26,7 @@ const AppealShow = ({
     ) : (
         <div className="container-fluid">
             <h1 className="h3 mb-2 text-gray-800">All Details</h1>
-            <p className="mb-4">ALl the details</p>
+            <p className="mb-4">All the details</p>
             <div className="card shadow mb-4">
                 <div className="card-header py-3">
                     <h6 className="m-0 font-weight-bold text-primary">

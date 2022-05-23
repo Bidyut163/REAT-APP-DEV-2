@@ -26,7 +26,7 @@ const Login = ({ login, auth: { isAuthenticated, user } }) => {
 
     // Redirect if Logged in and Receptionist
     if (isAuthenticated && user && user.role === 'RECEPTIONIST') {
-        return <Redirect to="/official/receptionist/dashboard" />;
+        return <Redirect to="/official/receptionist/panel" />;
     }
 
     return (
