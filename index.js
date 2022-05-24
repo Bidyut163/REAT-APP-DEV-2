@@ -20,12 +20,14 @@ const authRoutes = require('./routes/officials/authRoutes');
 const appellantUserRoutes = require('./routes/appellants/userRoutes');
 const appealRoutes = require('./routes/appellants/appealRoutes');
 const receptionistRoutes = require('./routes/officials/receptionistRoutes');
+const registrarRoutes = require('./routes/officials/registrarRoutes');
 
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/appellants', appellantUserRoutes);
 app.use('/api/appellants/appeal', appealRoutes);
 app.use('/api/receptionist', receptionistRoutes);
+app.use('/api/registrar', registrarRoutes);
 
 // Define PORT
 const PORT = process.env.PORT || 5000;
