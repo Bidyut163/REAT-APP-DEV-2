@@ -69,7 +69,7 @@ const Topbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                     </div>
                 </li>
 
-                <li className="nav-item dropdown no-arrow mx-1">
+                {/* <li className="nav-item dropdown no-arrow mx-1">
                     <Link
                         className="nav-link dropdown-toggle"
                         to="#"
@@ -147,9 +147,9 @@ const Topbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                             Show All Alerts
                         </Link>
                     </div>
-                </li>
+                </li> */}
 
-                <li className="nav-item dropdown no-arrow mx-1">
+                {/* <li className="nav-item dropdown no-arrow mx-1">
                     <Link
                         className="nav-link dropdown-toggle"
                         to="#"
@@ -275,7 +275,7 @@ const Topbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                             Read More Messages
                         </Link>
                     </div>
-                </li>
+                </li> */}
 
                 <div className="topbar-divider d-none d-sm-block"></div>
 

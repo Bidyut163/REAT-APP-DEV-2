@@ -7,9 +7,7 @@ const ThankYouPage = ({ logout }) => {
     return (
         <div className="container-fluid">
             <div className="text-center">
-                <div className="error mx-auto" data-text="404">
-                    Thank You
-                </div>
+                <div className="error mx-auto">Thank You</div>
                 <p className="lead text-gray-800 mb-5">
                     Your Application is Submitted
                 </p>

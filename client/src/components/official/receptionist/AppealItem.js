@@ -12,9 +12,10 @@ const AppealItem = ({
             <td>
                 <Link
                     to={`/official/receptionist/appeals/${id}`}
-                    className="btn btn-primary"
+                    className="btn btn-sm btn-primary"
+                    style={{ fontSize: '.7rem', padding: '0 .2rem' }}
                 >
-                    View
+                    view
                 </Link>
             </td>
         </tr>

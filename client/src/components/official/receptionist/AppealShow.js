@@ -71,6 +71,7 @@ const AppealShow = ({
                         </span>
                         <span className="text">Forward to Registrar</span>
                     </button>
+                    <div className="my-2"></div>
                 </div>
             </div>
         </div>

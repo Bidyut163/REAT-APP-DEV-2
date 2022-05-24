@@ -68,7 +68,7 @@ const Topbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         </form>
                     </div>
                 </li>
-
+                {/* 
                 <li className="nav-item dropdown no-arrow mx-1">
                     <Link
                         className="nav-link dropdown-toggle"
@@ -147,9 +147,9 @@ const Topbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                             Show All Alerts
                         </Link>
                     </div>
-                </li>
+                </li> */}
 
-                <li className="nav-item dropdown no-arrow mx-1">
+                {/* <li className="nav-item dropdown no-arrow mx-1">
                     <Link
                         className="nav-link dropdown-toggle"
                         to="#"
@@ -275,7 +275,7 @@ const Topbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                             Read More Messages
                         </Link>
                     </div>
-                </li>
+                </li> */}
 
                 <div className="topbar-divider d-none d-sm-block"></div>
 
@@ -290,7 +290,9 @@ const Topbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         aria-expanded="false"
                     >
                         <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-                            {!user ? null : user.firstName}
+                            {!user
+                                ? null
+                                : `${user.firstName} ${user.lastName}`}
                         </span>
                         <img
                             className="img-profile rounded-circle"
@@ -305,7 +307,7 @@ const Topbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                         aria-labelledby="userDropdown"
                     >
-                        <Link className="dropdown-item" to="#">
+                        {/* <Link className="dropdown-item" to="#">
                             <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profile
                         </Link>
@@ -316,7 +318,7 @@ const Topbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         <Link className="dropdown-item" to="#">
                             <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                             Activity Log
-                        </Link>
+                        </Link> */}
                         <div className="dropdown-divider"></div>
                         <Link
                             className="dropdown-item"
