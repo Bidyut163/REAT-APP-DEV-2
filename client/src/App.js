@@ -17,7 +17,10 @@ import UserLogin from './components/frontend/auth/official/Login';
 // import MasterLayout from './layouts/official/MasterLayout';
 import AdminPrivateRoute from './components/routing/AdminPrivateRoute';
 import ReceptionistPrivateRoute from './components/routing/ReceptionistPrivateRoute';
+import RegistrarPrivateRoute from './components/routing/RegistrarPrivateRoute';
 import AppellantPrivateRoute from './components/routing/AppellantPrivateRoute';
+
+// import MasterLayout from './layouts/official/registrar/MasterLayout';
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -88,6 +91,10 @@ const App = () => {
                             path="/official/receptionist"
                             name="Receptionist"
                         />
+                        <RegistrarPrivateRoute
+                            path="/official/registrar"
+                            name="Registrar"
+                        ></RegistrarPrivateRoute>
                     </Switch>
                 </Router>
             </div>

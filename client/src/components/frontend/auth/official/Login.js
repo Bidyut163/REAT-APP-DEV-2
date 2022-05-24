@@ -29,6 +29,11 @@ const Login = ({ login, auth: { isAuthenticated, user } }) => {
         return <Redirect to="/official/receptionist/panel" />;
     }
 
+    // Redirect if Logged in and Registrar
+    if (isAuthenticated && user && user.role === 'REGISTRAR') {
+        return <Redirect to="/official/registrar/panel" />;
+    }
+
     return (
         <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
             <div className="container">

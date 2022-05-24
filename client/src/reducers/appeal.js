@@ -4,6 +4,8 @@ import {
     CREATE_APPEAL,
     FORWARD_APPEAL,
     APPEAL_ERROR,
+    GET_APPEALS_REGISTRAR,
+    GET_APPEAL_REGISTRAR,
 } from '../actions/types';
 
 const initialState = {
@@ -23,7 +25,19 @@ export default function (state = initialState, action) {
                 appeal: payload,
                 loading: false,
             };
+        case GET_APPEAL_REGISTRAR:
+            return {
+                ...state,
+                appeal: payload,
+                loading: false,
+            };
         case GET_APPEALS:
+            return {
+                ...state,
+                appeals: payload,
+                loading: false,
+            };
+        case GET_APPEALS_REGISTRAR:
             return {
                 ...state,
                 appeals: payload,

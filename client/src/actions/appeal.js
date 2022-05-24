@@ -5,9 +5,11 @@ import {
     GET_APPEAL,
     CREATE_APPEAL,
     FORWARD_APPEAL,
+    GET_APPEALS_REGISTRAR,
+    GET_APPEAL_REGISTRAR,
 } from './types';
 
-// Get List of Appeals
+// Get List of Appeals with Receptionist
 export const getAppeals = () => async (dispatch) => {
     try {
         const res = await axios.get('/api/receptionist/appeals');
@@ -87,6 +89,46 @@ export const forwardToRegistrar = (id, history) => async (dispatch) => {
         });
 
         history.push('/official/receptionist/appeals');
+    } catch (err) {
+        dispatch({
+            type: APPEAL_ERROR,
+            payload: {
+                msg: err.response.statusText,
+                status: err.response.status,
+            },
+        });
+    }
+};
+
+// Get List of Appeals with Registrar
+export const getAppealsWithRegistrar = () => async (dispatch) => {
+    try {
+        const res = await axios.get('/api/registrar/appeals');
+
+        dispatch({
+            type: GET_APPEALS_REGISTRAR,
+            payload: res.data,
+        });
+    } catch (err) {
+        dispatch({
+            type: APPEAL_ERROR,
+            payload: {
+                msg: err.response.statusText,
+                status: err.response.status,
+            },
+        });
+    }
+};
+
+// Get a single appeal with registrar
+export const registrarGetAppeal = (id) => async (dispatch) => {
+    try {
+        const res = await axios.get(`/api/registrar/appeals/${id}`);
+
+        dispatch({
+            type: GET_APPEAL_REGISTRAR,
+            payload: res.data,
+        });
     } catch (err) {
         dispatch({
             type: APPEAL_ERROR,
