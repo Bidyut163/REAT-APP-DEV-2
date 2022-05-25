@@ -8,6 +8,7 @@ const app = express();
 const Appellant = require('./models/Appellant');
 const Appeal = require('./models/Appeal');
 const AppealState = require('./models/AppealState');
+const Checklist = require('./models/Checklist');
 
 // Init Middleware
 app.use(express.json({ extended: false }));
@@ -38,6 +39,9 @@ Appellant.hasMany(Appeal);
 
 AppealState.belongsTo(Appeal, { constraints: true, onDelete: 'CASCADE' });
 Appeal.hasOne(AppealState);
+
+Checklist.belongsTo(Appeal, { constraints: true, onDelete: 'CASCADE' });
+Appeal.hasOne(Checklist);
 
 sequelize
     // .sync({ force: true })
