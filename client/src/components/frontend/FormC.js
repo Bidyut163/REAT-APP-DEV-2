@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
@@ -25,7 +25,7 @@ const FormC = ({ logout, createAppeal, history }) => {
     };
 
     return (
-        <div>
+        <Fragment>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
                     <a className="navbar-brand" href="#">
@@ -144,7 +144,7 @@ const FormC = ({ logout, createAppeal, history }) => {
                     </form>
                 </div>
             </section>
-        </div>
+        </Fragment>
     );
 };
 

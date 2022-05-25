@@ -1,25 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { registrarGetAppeal } from '../../../actions/appeal';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { forwardToRegistrar } from '../../../actions/appeal';
 
-const AppealShow = ({
-    registrarGetAppeal,
-    match,
-    appeal: { appeal },
-
-    history,
-}) => {
+const AppealShow = ({ registrarGetAppeal, match, appeal: { appeal } }) => {
     useEffect(() => {
         const { id } = match.params;
         registrarGetAppeal(id);
     }, [registrarGetAppeal]);
-
-    // const onForward = () => {
-    //     const { id } = appeal;
-    //     forwardToRegistrar(id, history);
-    // };
 
     return !appeal ? (
         <div>loading</div>
@@ -62,15 +51,15 @@ const AppealShow = ({
 
             <div className="row">
                 <div className="col-lg-3">
-                    <button
-                        // onClick={onForward}
+                    <Link
+                        to={`/official/registrar/appeals/${appeal.id}/checklist`}
                         className="btn btn-success btn-icon-split"
                     >
                         <span className="icon text-white-50">
                             <i className="fas fa-check"></i>
                         </span>
-                        <span className="text">Forward to Bench</span>
-                    </button>
+                        <span className="text">Checklist(Form A)</span>
+                    </Link>
                     <div className="my-2"></div>
                 </div>
             </div>
@@ -84,6 +73,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { registrarGetAppeal })(
-    withRouter(AppealShow)
-);
+export default connect(mapStateToProps, { registrarGetAppeal })(AppealShow);
