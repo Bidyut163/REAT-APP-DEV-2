@@ -74,6 +74,9 @@ router.post(
     '/appeals/:id/checklist',
     [
         body('appealNum', 'Please enter a appeal number').isLength({ min: 1 }),
+        body('complaintNum', 'Please enter a cpmplaint number').isLength({
+            min: 1,
+        }),
         body('appellant', 'Please enter a appellant name').isLength({ min: 1 }),
         body('respondent', 'Please enter a respondent name').isLength({
             min: 1,
@@ -94,13 +97,35 @@ router.post(
             return res.status(400).json(errObj);
         }
 
-        const { appealNum, appellant, respondent } = req.body;
+        const { appealNum, complaintNum, appellant, respondent } = req.body;
         const appealId = req.params.id;
 
         try {
+            // See if appeal exits or not
+            const existingAppeal = await Appeal.findOne({
+                where: { id: appealId },
+            });
+
+            if (!existingAppeal) {
+                return res.status(400).json({
+                    msg: 'no existing appeal',
+                });
+            }
+
+            // See if checklist is already filled
+            const existingChecklist = await Checklist.findOne({
+                where: { appealId: appealId },
+            });
+
+            if (existingChecklist) {
+                return res.status(400).json({
+                    msg: 'checklist is already filled for this appeal',
+                });
+            }
             // Create a checklist instance
             const checklist = Checklist.build({
                 appeal_num: appealNum,
+                complaint_num: complaintNum,
                 appellant: appellant,
                 respondent: respondent,
                 appealId: appealId,
@@ -116,6 +141,25 @@ router.post(
     }
 );
 
+// @route GET api/registrar/appeals/:id/checklist
+// @desc  View details of filled Checklist (Form A)
+// @access Private
+
+router.get('/appeals/:id/checklist', auth, isRegistrar, async (req, res) => {
+    try {
+        const checklist = await Checklist.findOne({
+            where: {
+                appealId: req.params.id,
+            },
+        });
+
+        res.json(checklist);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 // @route PUT api/registrar/appeals/:id/forward
 // @desc  forward to bench
 // @access Private
@@ -129,23 +173,24 @@ router.put('/appeals/:id/forward', auth, isRegistrar, async (req, res) => {
             },
         });
 
-        if (registrar.get({ plain: true }).registrar) {
-            await AppealState.update(
-                {
-                    appellant: 0,
-                    receptionist: 0,
-                    registrar: 0,
-                    bench: 1,
-                },
-                {
-                    where: { appealId: req.params.id },
-                }
-            );
-
-            res.json({ msg: 'table updated' });
-        } else {
-            res.json({ msg: 'appeal is not with the registrar' });
+        // check if the appeal is with the registrar
+        if (!registrar.get({ plain: true }).registrar) {
+            return res.json({ msg: 'appeal is not with the registrar' });
         }
+
+        await AppealState.update(
+            {
+                appellant: 0,
+                receptionist: 0,
+                registrar: 0,
+                bench: 1,
+            },
+            {
+                where: { appealId: req.params.id },
+            }
+        );
+
+        res.json({ msg: 'table updated' });
     } catch (err) {
         console.log(err.message);
         res.status(500).send('Server Error');
